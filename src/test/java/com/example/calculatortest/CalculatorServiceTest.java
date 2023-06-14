@@ -1,9 +1,11 @@
 package com.example.calculatortest;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CalculatorServiceTest {
     private CalculatorService calculatorService;
@@ -70,10 +72,12 @@ public class CalculatorServiceTest {
     }
 
     @Test
-    public void divideOnZero(){
-        Object actual = calculatorService.divide(num3, num4);
-        Object expected = new IllegalArgumentException();
+    public void shouldThrowIllegalArgumentExceptionWhenDivideOnZero(){
+        try{
+            calculatorService.divide(num1, num4);
+            fail("expected message was not occured");
+        } catch (IllegalArgumentException e){
 
-        assertEquals(expected, actual);
+        }
     }
 }
