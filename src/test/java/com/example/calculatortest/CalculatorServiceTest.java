@@ -1,35 +1,26 @@
 package com.example.calculatortest;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 
+import static com.example.calculatortest.TestParams.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CalculatorServiceTest {
     private CalculatorService calculatorService;
-    private int num1;
-    private int num2;
-    private int num3;
-    private int num4;
-
+    private static final TestParams testParams = new TestParams();
     @Before
     public void setUp(){
         calculatorService = new CalculatorService();
-        num1 = 28;
-        num2 = -168;
-        num3 = 7;
-        num4 = 0;
     }
 
     @Test
     public void sum(){
-       int actual1 = calculatorService.sum(num1, num2);
-       int expected1 = num1+num2;
+       int actual1 = calculatorService.sum(NUM_1, NUM_2);
+       int expected1 = NUM_1 + NUM_2;
 
-        int actual2 = calculatorService.sum(num3, num4);
-        int expected2 = num3 + num4;
+        int actual2 = calculatorService.sum(NUM_3, NUM_4);
+        int expected2 = NUM_3 + NUM_4;
 
        assertEquals(expected1, actual1);
        assertEquals(expected2, actual2);
@@ -37,11 +28,11 @@ public class CalculatorServiceTest {
 
     @Test
     public void difference(){
-        int actual1 = calculatorService.difference(num2, num3);
-        int expected1 = num2 - num3;
+        int actual1 = calculatorService.difference(NUM_2, NUM_3);
+        int expected1 = NUM_2 - NUM_3;
 
-        int actual2 = calculatorService.difference(num1, num4);
-        int expected2 = num1 - num4;
+        int actual2 = calculatorService.difference(NUM_1, NUM_4);
+        int expected2 = NUM_1 - NUM_4;
 
         assertEquals(expected1, actual1);
         assertEquals(expected2, actual2);
@@ -49,11 +40,11 @@ public class CalculatorServiceTest {
 
     @Test
     public void multiply(){
-        int actual1 = calculatorService.multiply(num1, num3);
-        int expected1 = num1 * num3;
+        int actual1 = calculatorService.multiply(NUM_1, NUM_3);
+        int expected1 = NUM_1 * NUM_3;
 
-        int actual2 = calculatorService.multiply(num2, num4);
-        int expected2 = num2 * num4;
+        int actual2 = calculatorService.multiply(NUM_2, NUM_4);
+        int expected2 = NUM_2 * NUM_4;
 
         assertEquals(expected1, actual1);
         assertEquals(expected2, actual2);
@@ -61,11 +52,11 @@ public class CalculatorServiceTest {
 
     @Test
     public void divide(){
-        double actual1 = calculatorService.divide(num1, num3);
-        double expected1 = (double) num1/num3;
+        double actual1 = calculatorService.divide(NUM_1, NUM_3);
+        double expected1 = (double) NUM_1 / NUM_3;
 
-        double actual2 = calculatorService.divide(num2, num3);
-        double expected2 = (double) num2/num3;
+        double actual2 = calculatorService.divide(NUM_2, NUM_3);
+        double expected2 = (double) NUM_2 / NUM_3;
 
         assertEquals(expected1, actual1);
         assertEquals(expected2, actual2);
@@ -73,11 +64,6 @@ public class CalculatorServiceTest {
 
     @Test
     public void shouldThrowIllegalArgumentExceptionWhenDivideOnZero(){
-        try{
-            calculatorService.divide(num1, num4);
-            fail("expected message was not occured");
-        } catch (IllegalArgumentException e){
-
-        }
+        assertThrows(IllegalArgumentException.class, () -> calculatorService.divide(NUM_1, NUM_4));
     }
 }
